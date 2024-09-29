@@ -10,6 +10,7 @@ function addProductToCart(product) {
 // add to cart button event handler
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
+
   let currentCart = getLocalStorage("so-cart");
   console.log(currentCart);
   if (currentCart == null) {
