@@ -13,7 +13,7 @@ export default async function productDetails(productId) {
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 
-async function addToCart() {
+async function addToCart(e) {
   const product = await findProductById(e.target.dataset.id);
   let currentCart = getLocalStorage("so-cart");
   if (currentCart == null) {
