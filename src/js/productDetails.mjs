@@ -2,7 +2,8 @@
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
-let product = [];
+let product = {};
+let products = [];
 
 export default async function productDetails(productId) {
   // get the details for the current product. findProductById will return a promise! use await or .then() to process it
@@ -13,22 +14,29 @@ export default async function productDetails(productId) {
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 
-async function addToCart(e) {
-  const product = await findProductById(e.target.dataset.id);
-  let currentCart = getLocalStorage("so-cart");
-  if (currentCart == null) {
-    product.push(product);
-    return addToCart(product);
-  }
-  currentCart.push(product);
-  addToCart(currentCart);
-  setLocalStorage("so-cart", product);
-}
+// async function addToCart() {
+//   setLocalStorage("so-cart", product);
+// }
 
 // add to cart button event handler
-// async function addToCartHandler(e) {
+// async function addToCartHandler(e) {}
 
-// }
+async function addToCart() {
+  // NS grabs current cart contents, so additional contents can be added.
+  let currentCart = getLocalStorage("so-cart");
+  // NS checks if the cart is empty, if it is then it will add the product to the products array
+  if (currentCart == null) {
+    products.push(product);
+    console.log(`products: ${products}`);
+    return setLocalStorage("so-cart", products);
+  }
+  // NS adds additional content to the existing cart
+  currentCart.push(product);
+  setLocalStorage("so-cart", currentCart);
+
+  // NS use if you only want one item in the cart at a time.
+  // setLocalStorage("so-cart", product);
+}
 
 function renderProductDetails() {
   document.querySelector("#productBrand").innerText = product.Brand.Name;
