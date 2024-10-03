@@ -8,7 +8,7 @@ function renderCartContents() {
     document.querySelector(".product-list").innerHTML = htmlItems;
     return;
   }
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  const htmlItems = cartItems.map((item) => cartItemTemplate(item));  //where is the error here?
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
