@@ -17,7 +17,7 @@ async function addToCart() {
   // NS grabs current cart contents, so current contents aren't lost when additional contents are added.
   let currentCart = getLocalStorage("so-cart");
   // NS checks if the cart is empty, if it is then it will add the product to the products array
-  if (currentCart == null) {
+  if (currentCart == null || []) {
     products.push(product);
     console.log(`products: ${products}`);
     return setLocalStorage("so-cart", products);
