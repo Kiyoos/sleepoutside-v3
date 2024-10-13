@@ -166,6 +166,20 @@ button {
   width: 100%;
 }
 
+.remove {
+  cursor: pointer;
+}
+
+#removeAll {
+  cursor: pointer;
+  color: rgb(199, 6, 6);
+  font-weight: 600;
+  font-size: 1.1em;
+  max-width: 550px;
+  text-align: right;
+  margin-right: 20px;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;

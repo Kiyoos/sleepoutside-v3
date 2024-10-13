@@ -1,10 +1,13 @@
 import { getLocalStorage } from "./utils.mjs";
+import { removeAll, removeItem } from "./remove.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  let htmlItems = "";
-  if (cartItems == null) {
-    htmlItems = "<p>Cart is empty. Please add product to see it here.</p>";
+  let htmlItems = ``;
+  // NS removes the Remove All text and addes message if the cart is empty
+  if (cartItems == null || cartItems.length == 0) {
+    htmlItems = `<p>Cart is empty. Please add product to see it here.</p>`;
+    document.querySelector("#removeAll").innerHTML = "";
     document.querySelector(".product-list").innerHTML = htmlItems;
     return;
   }
@@ -25,7 +28,7 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1 
-    <span data-id="${item.Id}">&#10060;</span>
+    <span class="remove" data-id="${item.Id}">&#10060;</span>
   </p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
@@ -34,3 +37,15 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+// NS adds a click event to all items in the cart then calls the removeItem function
+document.querySelectorAll(".remove").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    const clickedItem = event.target;
+    const attributeValue = clickedItem.getAttribute("data-id");
+    return removeItem(attributeValue);
+  });
+});
+
+// NS adds click event to remove all items
+document.querySelector("#removeAll").addEventListener("click", removeAll);
