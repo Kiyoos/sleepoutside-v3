@@ -32,11 +32,55 @@ export function getParam(param) {
   return product;
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position='afterbegin', clear=true) {
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = true
+) {
   //clear out the element provided if clear is true.
   if (clear) {
     parentElement.innerHTML = "";
   }
-  const htmlStrings =  list.map(templateFn);
+  const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export async function renderWithTemplate(
+  templateFn,
+  parentElement,
+  data,
+  callback,
+  position = "afterbegin",
+  clear = true
+) {
+  //clear out the element provided if clear is true.
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  const htmlString = await templateFn(data);
+  parentElement.insertAdjacentHTML(position, htmlString);
+  if (callback) {
+    callback(data);
+  }
+}
+
+function loadTemplate(path) {
+  return async function () {
+    const res = await fetch(path);
+    if (res.ok) {
+      const html = await res.text();
+      return html;
+    }
+  };
+}
+
+export async function loadHeaderFooter() {
+  const headerTemplateFn = loadTemplate("/partials/header.html");
+  const footerTemplateFn = loadTemplate("/partials/footer.html");
+  const headerEl = document.getElementById("main-header");
+  const footerEl = document.getElementById("main-footer");
+  renderWithTemplate(headerTemplateFn, headerEl);
+  renderWithTemplate(footerTemplateFn, footerEl);
 }
