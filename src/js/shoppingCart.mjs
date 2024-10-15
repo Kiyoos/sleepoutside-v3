@@ -1,9 +1,20 @@
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { removeEvents } from "./remove.mjs";
 
 export default function shoppingCart() {
-  const cartItems = getLocalStorage("so-cart");
+  let cartItems = getLocalStorage("so-cart");
   const outputEl = document.querySelector(".product-list");
+
+  // NS removes the "Remove All" text and adds message if the cart is empty
+  if (cartItems == null || cartItems.length == 0) {
+    cartItems = `<p>Cart is empty. Please add product to see it here.</p>`;
+    document.querySelector("#removeAll").innerHTML = "";
+    document.querySelector(".product-list").innerHTML = cartItems;
+    return;
+  }
+
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+  removeEvents();
 }
 
 function cartItemTemplate(item) {

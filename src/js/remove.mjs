@@ -25,3 +25,17 @@ export function removeAll() {
   setLocalStorage("so-cart", currentCart);
   location.reload();
 }
+
+export function removeEvents() {
+  // NS adds a click event to all remove "X" in the cart then calls the removeItem function
+  document.querySelectorAll(".remove").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      const clickedItem = event.target;
+      const attributeValue = clickedItem.getAttribute("data-id");
+      return removeItem(attributeValue);
+    });
+  });
+
+  // NS adds a click event to "Remove All" to empty the cart
+  document.querySelector("#removeAll").addEventListener("click", removeAll);
+}
