@@ -171,7 +171,8 @@ button {
   cursor: pointer;
 }
 
-#removeAll, #cart-footer {
+#removeAll,
+#cart-footer {
   font-weight: 600;
   font-size: 1.1em;
   max-width: 600px;
@@ -183,7 +184,6 @@ button {
   cursor: pointer;
   color: rgb(199, 6, 6);
 }
-
 
 /* Start cart list card styles */
 .cart-card {
