@@ -134,6 +134,16 @@ button {
   text-decoration: none;
   color: var(--dark-grey);
 }
+/* Styles for product grid */
+
+.product-grid {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
