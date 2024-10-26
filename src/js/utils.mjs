@@ -1,3 +1,5 @@
+import { cartQty } from "./cartQuantity.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -83,4 +85,6 @@ export async function loadHeaderFooter() {
   const footerEl = document.getElementById("main-footer");
   renderWithTemplate(headerTemplateFn, headerEl);
   renderWithTemplate(footerTemplateFn, footerEl);
+  // NS loads the carty quantity with page load
+  setTimeout(cartQty, 200);
 }

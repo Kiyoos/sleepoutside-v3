@@ -2,8 +2,9 @@ import { getData } from "./productData.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  if (product.Id != "880RT" && product.Id != "989CG") {
-    return `<li class="product-card">
+  // NS if function no longer needed after Team5 activity
+  // if (product.Id != "880RT" && product.Id != "989CG") {
+  return `<li class="product-card">
             <a href="/product_pages/index.html?product=${product.Id}">
                 <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}"/>
                 <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -11,7 +12,7 @@ function productCardTemplate(product) {
                 <p class="product-card__price">${product.FinalPrice}</p>
             </a>
         </li>`;
-  }
+  // }
 }
 
 export default async function productList(selector, category) {
@@ -19,7 +20,7 @@ export default async function productList(selector, category) {
   const element = document.querySelector(selector);
   //get the list of products
   const products = await getData(category);
-  console.log(products);
+  // console.log(products);
   //render the products for the main page
   renderListWithTemplate(
     productCardTemplate,

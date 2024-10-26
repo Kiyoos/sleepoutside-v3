@@ -1,3 +1,4 @@
+import { cartQty } from "./cartQuantity.mjs";
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
@@ -25,6 +26,7 @@ async function addToCart() {
   // NS adds additional content to the existing cart or "current cart"
   currentCart.push(product);
   setLocalStorage("so-cart", currentCart);
+  cartQty();
 }
 
 function renderProductDetails() {
