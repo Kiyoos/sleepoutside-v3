@@ -6,18 +6,23 @@ export default function shoppingCart() {
   let cartItems = getLocalStorage("so-cart");
   const outputEl = document.querySelector(".product-list");
 
-  // NS removes the "Remove All" text and Cart Total and adds message if the cart is empty
+  // NS gives a message if the cart is empty;
   if (cartItems == null || cartItems.length == 0) {
-    document.querySelector("#removeAll").innerHTML = "";
-    document.querySelector("#cart-footer").innerHTML = "";
-    cartItems = `<p>Cart is empty. Please add product to see it here.</p>`;
-    document.querySelector(".product-list").innerHTML = cartItems;
+    outputEl.innerHTML = `<p>Cart is empty. Please add product to see it here.</p>`;
     return;
   }
 
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+  addRemoveAll();
   cartTotal(cartItems);
   removeEvents();
+}
+
+function addRemoveAll() {
+  const sectionEl = document.getElementById("removeAll");
+  console.log(sectionEl);
+  sectionEl.innerText = "Remove All";
+  return;
 }
 
 function cartItemTemplate(item) {

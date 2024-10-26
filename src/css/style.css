@@ -110,6 +110,25 @@ button {
   fill: gray;
 }
 
+/* NS adding CSS for the quantity on the backpack */
+.cart {
+  position: relative;
+}
+
+#cartQty {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  background-color: rgb(237, 195, 8);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  font-size: small;
+  font-weight: 600;
+}
+
+/* end of the quantity on backpack */
+
 /* End cart icon styles */
 
 .mission {
@@ -142,6 +161,30 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  color: var(--dark-grey);
+  padding-left: 0;
+}
+
+/* formatting the main page */
+.product-grid > li {
+  width: 150px;
+  padding: 0.5em;
+  margin: 1em;
+}
+.product-grid h2 {
+  margin: 0;
+
+  font-size: 1.2em;
+}
+.product-grid a {
+  text-decoration: none;
+}
+.product-grid a:link,
+.product-grid a:visited {
+  color: var(--dark-grey);
+}
+.product-grid a:hover {
+  text-decoration: underline;
 }
 
 /* Styles for product lists */
@@ -182,7 +225,7 @@ button {
 }
 
 #removeAll,
-#cart-footer {
+#cart-total {
   font-weight: 600;
   font-size: 1.1em;
   max-width: 600px;
