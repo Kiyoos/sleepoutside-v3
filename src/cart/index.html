@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Cart</title>
 
-  <title>Sleep Outside | Cart</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/svg" href="../images/noun_Tent_2517.svg" />
+    <!--NS added favicon-->
 
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="icon" type="image/svg" href="../images/noun_Tent_2517.svg" />
-  <!--NS added favicon-->
+    <script src="../js/cart.mjs" type="module"></script>
+  </head>
 
-  <script src="../js/cart.mjs" type="module"></script>
-</head>
+  <body>
+    <header class="divider" id="main-header"></header>
 
-<body>
-  <header class="divider" id="main-header"></header>
+    <main class="divider">
+      <section class="products">
+        <h2>My Cart</h2>
+        <p id="removeAll"></p>
 
-  <main class="divider">
-    <section class="products">
-      <h2>My Cart</h2>
-      <p id="removeAll"></p>
+        <ul class="product-list"></ul>
 
-      <ul class="product-list"></ul>
+        <p id="cart-total"></p>
+        <button
+          id="checkout"
+          type="button"
+          onclick="location.href='/checkout/index.html'"
+        >
+          Checkout
+        </button>
+      </section>
+    </main>
 
-      <p id="cart-total"></p>
-      <button id="checkout" type="button" onclick="location.href='/checkout/index.html'">Checkout
-
-      </button>
-    </section>
-  </main>
-
-  <footer id="main-footer"></footer>
-</body>
-
+    <footer id="main-footer"></footer>
+  </body>
 </html>
