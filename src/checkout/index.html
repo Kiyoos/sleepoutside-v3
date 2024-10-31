@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,10 +54,24 @@
         </fieldset>
         <fieldset>
           <legend>Order Summary</legend>
-          <p id="itemTotal"></p>
-          <p id="shipping"></p>
-          <p id="tax"></p>
-          <p id="orderTotal"></p>
+          <ul>
+            <li>
+              <label for="cartTotal">Item Subtotal(<span id="num-items"></span>)</label>
+              <p name="cartTotal" id="cartTotal"></p>
+            </li>
+            <li>
+              <label for="shipping">Shipping Estimate</label>
+              <p id="shipping"></p>
+            </li>
+            <li>
+              <label for="tax">Tax</label>
+              <p id="tax"></p>
+            </li>
+            <li>
+              <label for="orderTotal"><b>Order Total</b></label>
+              <p id="orderTotal"></p>
+            </li>
+          </ul>
         </fieldset>
       </form>
       <button type="submit" form="checkoutForm" value="submit">Checkout</button>
