@@ -13,49 +13,77 @@
   <body>
     <header class="divider" id="main-header"></header>
 
-    <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
-      <div class="grid">
-        <form method="get" action="" id="checkoutForm" class="customer">
+    <main class="divider checkout">
+      <h2>Review & Place your Order</h2>
+      <section class="checkoutForm">
+        <form name="checkout">
           <fieldset>
             <legend>Shipping</legend>
-            <label for="fname">First Name:* </label><br />
-            <input type="text" name="fname" id="fname" required />
-            <br />
-            <label for="lname">Last Name:*</label><br />
-            <input type="text" name="lname" id="lname" required />
-            <br />
-            <label for="street">Street:*</label><br />
-            <input type="text" name="street" id="street" required />
-            <br />
-            <label for="city">City:* </label><br />
-            <input type="text" name="city" id="city" required />
-            <br />
-            <label for="state">State:* </label><br />
-            <input type="text" name="state" id="state" required />
-            <br />
-            <label for="zip">Zip:*</label><br />
-            <input type="number" name="zip" id="zip" required />
+
+            <div class="checkoutName">
+              <label for="fname">First Name</label><br />
+              <input type="text" name="fname" value="Jane" required /><br />
+              <label for="lname">Last Name</label><br />
+              <input type="text" name="lname" value="Doe" required /><br />
+            </div>
+
+            <div class="checkoutAddress">
+              <label for="street">Street</label><br />
+              <input
+                type="text"
+                name="street"
+                id="street"
+                value="1234 Some Street"
+                required
+              />
+              <br />
+              <label for="city">City</label><br />
+              <input
+                type="text"
+                name="city"
+                id="city"
+                value="Some City"
+                required
+              /><br />
+              <label for="state">State</label><br />
+              <input
+                type="text"
+                name="state"
+                id="state"
+                value="JD"
+                required
+              /><br />
+              <label for="zip">Zip</label><br />
+              <input type="number" name="zip" id="zip" value="12345" required />
+            </div>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
-            <label for="cardnumber">Card number:*</label><br />
-            <input type="number" name="cardnumber" id="cardnumber" required />
-            <br />
-            <label for="expiration"> Expiration:*</label><br />
-            <input type="number" name="expiration" id="expiration" required />
-            <br />
-            <label for="code">Security Code:*</label><br />
-            <input type="number" name="code" id="code" required />
+
+            <label for="cardNumber">Card number</label><br />
+            <input
+              name="cardNumber"
+              id="cardNumber"
+              value="1234123412341234"
+              required
+            /><br />
+            <label for="expiration"> Expiration</label><br />
+            <input
+              name="expiration"
+              id="expiration"
+              value="12/34"
+              required
+            /><br />
+            <label for="code">Security Code</label><br />
+            <input name="code" id="code" value="123" required />
           </fieldset>
-          <fieldset>
+          <fieldset class="checkoutSummary">
             <legend>Order Summary</legend>
+
             <ul>
               <li>
                 <label for="cartTotal"
-                  >Item Subtotal(<span id="num-items"></span>)</label
+                  >Item Subtotal(<span id="numItems"></span>)</label
                 >
                 <p name="cartTotal" id="cartTotal"></p>
               </li>
@@ -73,11 +101,9 @@
               </li>
             </ul>
           </fieldset>
+          <button id="checkoutSubmit" type="submit">Checkout</button>
         </form>
-        <button type="submit" form="checkoutForm" value="submit">
-          Checkout
-        </button>
-      </div>
+      </section>
     </main>
 
     <footer id="main-footer"></footer>

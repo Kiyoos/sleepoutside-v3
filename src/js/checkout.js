@@ -2,13 +2,13 @@ import checkoutProcess from "./checkoutProcess.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
-checkoutProcess.init("so-cart", ".checkout-summary");
+checkoutProcess.init("so-cart", ".checkoutSummary");
 
 document
   .querySelector("#zip")
   .addEventListener(
     "blur",
-    checkoutProcess.calculateOrdertotal.bind(checkoutProcess)
+    checkoutProcess.calculateOrderTotal.bind(checkoutProcess)
   );
 
 document.forms["checkout"].addEventListener("submit", (e) => {

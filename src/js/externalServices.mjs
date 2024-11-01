@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_SERVER_URL
+const baseURL = import.meta.env.VITE_SERVER_URL;
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -21,6 +21,8 @@ export async function findProductById(id) {
 }
 
 export async function checkout(payload) {
+  console.log("payload");
+  console.log(payload);
   const options = {
     method: "POST",
     headers: {
