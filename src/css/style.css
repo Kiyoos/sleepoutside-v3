@@ -30,6 +30,7 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+
 .logo {
   line-height: 60px;
   width: 245px;
@@ -237,6 +238,40 @@ button {
 #removeAll {
   cursor: pointer;
   color: rgb(199, 6, 6);
+}
+
+/* NS Start of styles for Checkout */
+
+.checkoutForm {
+  width: 100%;
+  max-width: 350px;
+  margin-left: 10px;
+}
+
+.checkoutForm input {
+  width: 100%;
+  line-height: 2em;
+  border: thin solid var(--dark-grey);
+  font-size: var(--font-base);
+}
+
+.checkoutSummary ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0;
+}
+
+.checkoutSummary li {
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+  margin: 10px;
+}
+
+.checkoutSummary p {
+  margin: 0;
 }
 
 /* Start cart list card styles */

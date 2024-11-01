@@ -20,14 +20,11 @@ export default function shoppingCart() {
 
 function addRemoveAll() {
   const sectionEl = document.getElementById("removeAll");
-  console.log(sectionEl);
   sectionEl.innerText = "Remove All";
   return;
 }
 
 function cartItemTemplate(item) {
-  console.log(`item`);
-  console.log(item);
   //console.log(item.Images.PrimaryMedium);
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
