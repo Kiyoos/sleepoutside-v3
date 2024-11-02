@@ -22,9 +22,9 @@
 
             <div class="checkoutName">
               <label for="fname">First Name</label><br />
-              <input type="text" name="fname" value="Jane" required /><br />
+              <input type="text" name="fname" id="fname" value="Jane" required /><br />
               <label for="lname">Last Name</label><br />
-              <input type="text" name="lname" value="Doe" required /><br />
+              <input type="text" name="lname" id="lname" value="Doe" required /><br />
             </div>
 
             <div class="checkoutAddress">
@@ -82,21 +82,19 @@
 
             <ul>
               <li>
-                <label for="cartTotal"
-                  >Item Subtotal(<span id="numItems"></span>)</label
-                >
-                <p name="cartTotal" id="cartTotal"></p>
+                <p>Item Subtotal(<span id="numItems"></span>)</p>
+                <p id="cartTotal"></p>
               </li>
               <li>
-                <label for="shipping">Shipping Estimate</label>
+                <p>Shipping Estimate</p>
                 <p id="shipping"></p>
               </li>
               <li>
-                <label for="tax">Tax</label>
+                <p>Tax</p>
                 <p id="tax"></p>
               </li>
               <li>
-                <label for="orderTotal"><b>Order Total</b></label>
+                <p><b>Order Total</b></p>
                 <p id="orderTotal"></p>
               </li>
             </ul>

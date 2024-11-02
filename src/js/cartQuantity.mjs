@@ -2,14 +2,24 @@
 import { getLocalStorage } from "./utils.mjs";
 
 export async function cartQty() {
+  // console.log("cartQty is called");
   let cartItems = getLocalStorage("so-cart");
+  // NS error handling if cart is null
+  if (cartItems === null) {
+    return;
+  }
+
+  const cartItemTotal = cartItems.reduce((total, item) => {
+    return total + item.Quantity;
+  }, 0);
+
   console.log(cartItems);
   // NS only creates the cartQty if the cart has something in it
-  if (cartItems.length > 0) {
+  if (cartItemTotal > 0) {
     const cartQtyEl = document.querySelector(".cart a");
     const spanEl = document.createElement("span");
     spanEl.setAttribute("id", "cartQty");
-    spanEl.innerText = cartItems.length;
+    spanEl.innerText = cartItemTotal;
     cartQtyEl.appendChild(spanEl);
   }
 }
