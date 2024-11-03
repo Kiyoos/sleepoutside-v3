@@ -43,6 +43,7 @@ async function addToCart() {
     currentCart[itemIndex].Quantity++;
     console.log(currentCart);
     setLocalStorage("so-cart", currentCart);
+    cartQty();
     return;
   }
 
