@@ -6,10 +6,7 @@ checkoutProcess.init("so-cart", ".checkoutSummary");
 
 document
   .querySelector("#zip")
-  .addEventListener(
-    "blur",
-    checkoutProcess.calculateOrderTotal.bind(checkoutProcess)
-  );
+  .addEventListener("blur", checkoutProcess.calculateOrderTotal.bind(checkoutProcess));
 
 document.forms["checkout"].addEventListener("submit", (e) => {
   e.preventDefault();
