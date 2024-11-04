@@ -220,7 +220,7 @@ button {
 .product-detail img {
   width: 100%;
 }
-
+/* NS remove features */
 .remove {
   cursor: pointer;
 }
@@ -237,6 +237,26 @@ button {
 #removeAll {
   cursor: pointer;
   color: rgb(199, 6, 6);
+}
+
+/* NS Increase & Decrease Buttons */
+
+.decreaseQty, .increaseQty {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  line-height: 25px;
+  /* vertical-align:text-top; */
+  font-size: var(--font-body);
+  font-weight: 600;
+  font-size: 1.5em;
+  /* border: 1px solid var(--dark-grey); */
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  background-color:#a4b8c4;
+  
+
 }
 
 /* NS Start of styles for Checkout */
