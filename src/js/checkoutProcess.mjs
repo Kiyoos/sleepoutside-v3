@@ -40,7 +40,7 @@ const checkoutProcess = {
     this.calculateItemSummary();
   },
   calculateItemSummary: function () {
-    console.log("calculateItemSummary called");
+    // console.log("calculateItemSummary called");
     const summaryElement = document.querySelector(
       this.outputSelector + " #cartTotal"
     );
@@ -58,7 +58,7 @@ const checkoutProcess = {
     summaryElement.innerText = formatUSD.format(this.itemTotal);
   },
   calculateOrderTotal: function () {
-    console.log("calculateOrderTotal called");
+    // console.log("calculateOrderTotal called");
     this.shipping = 10 + (this.list.length - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
     this.orderTotal = (
@@ -69,7 +69,7 @@ const checkoutProcess = {
     this.displayOrderTotals();
   },
   displayOrderTotals: function () {
-    console.log("displayOrderTotals called");
+    // console.log("displayOrderTotals called");
     const shipping = document.querySelector(this.outputSelector + " #shipping");
     const tax = document.querySelector(this.outputSelector + " #tax");
     const orderTotal = document.querySelector(
@@ -84,7 +84,7 @@ const checkoutProcess = {
     orderTotal.innerText = formatUSD.format(this.orderTotal);
   },
   checkout: async function (form) {
-    console.log("checkout called");
+    // console.log("checkout called");
     const json = formDataToJSON(form);
     // add totals, and item details
     json.orderDate = new Date();

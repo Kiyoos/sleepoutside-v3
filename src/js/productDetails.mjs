@@ -10,7 +10,7 @@ export default async function productDetails(productId) {
   product = await findProductById(productId);
 
   //AB - error handling
-  if(!product){
+  if (!product) {
     showError("Product not found.");
     return;
   }
@@ -24,13 +24,33 @@ export default async function productDetails(productId) {
 async function addToCart() {
   // NS grabs current cart contents, so current contents aren't lost when additional contents are added.
   let currentCart = getLocalStorage("so-cart");
+
   // NS checks if the cart is empty, if it is then it will add the product to the products array
-  if (currentCart === null) {
+  if (currentCart === null || currentCart.length === 0) {
+    //NS adds the Quantity element at a value of 1 each time a new item is added to a cart.
+    product["Quantity"] = 1;
     products.push(product);
-    return setLocalStorage("so-cart", products);
+    setLocalStorage("so-cart", products);
+    cartQty();
+    return;
   }
+
+  // NS finds the index number of the existing item in cart
+  const itemIndex = currentCart.findIndex((item) => item.Id === product.Id);
+
+  if (itemIndex >= 0) {
+    // console.log(`The cart already has product id: ${product.Id}`);
+    currentCart[itemIndex].Quantity++;
+    console.log(currentCart);
+    setLocalStorage("so-cart", currentCart);
+    cartQty();
+    return;
+  }
+
   // NS adds additional content to the existing cart or "current cart"
+  product["Quantity"] = 1;
   currentCart.push(product);
+  console.log(currentCart);
   setLocalStorage("so-cart", currentCart);
   cartQty();
 }
@@ -51,8 +71,8 @@ function renderProductDetails() {
 function showError(message) {
   const errorContainer = document.querySelector("#error-message");
   errorContainer.innerText = message;
-  
-//hide add to cart button
+
+  //hide add to cart button
   const addToCartButton = document.getElementById("addToCart");
   if (addToCartButton) {
     addToCartButton.style.display = "none";

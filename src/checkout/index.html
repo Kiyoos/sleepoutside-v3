@@ -22,37 +22,19 @@
 
             <div class="checkoutName">
               <label for="fname">First Name</label><br />
-              <input type="text" name="fname" value="Jane" required /><br />
+              <input type="text" name="fname" id="fname" value="Jane" required /><br />
               <label for="lname">Last Name</label><br />
-              <input type="text" name="lname" value="Doe" required /><br />
+              <input type="text" name="lname" id="lname" value="Doe" required /><br />
             </div>
 
             <div class="checkoutAddress">
               <label for="street">Street</label><br />
-              <input
-                type="text"
-                name="street"
-                id="street"
-                value="1234 Some Street"
-                required
-              />
+              <input type="text" name="street" id="street" value="1234 Some Street" required />
               <br />
               <label for="city">City</label><br />
-              <input
-                type="text"
-                name="city"
-                id="city"
-                value="Some City"
-                required
-              /><br />
+              <input type="text" name="city" id="city" value="Some City" required /><br />
               <label for="state">State</label><br />
-              <input
-                type="text"
-                name="state"
-                id="state"
-                value="JD"
-                required
-              /><br />
+              <input type="text" name="state" id="state" value="JD" required /><br />
               <label for="zip">Zip</label><br />
               <input type="number" name="zip" id="zip" value="12345" required />
             </div>
@@ -61,19 +43,9 @@
             <legend>Payment</legend>
 
             <label for="cardNumber">Card number</label><br />
-            <input
-              name="cardNumber"
-              id="cardNumber"
-              value="1234123412341234"
-              required
-            /><br />
+            <input name="cardNumber" id="cardNumber" value="1234123412341234" required /><br />
             <label for="expiration"> Expiration</label><br />
-            <input
-              name="expiration"
-              id="expiration"
-              value="12/34"
-              required
-            /><br />
+            <input name="expiration" id="expiration" value="12/34" required /><br />
             <label for="code">Security Code</label><br />
             <input name="code" id="code" value="123" required />
           </fieldset>
@@ -82,21 +54,19 @@
 
             <ul>
               <li>
-                <label for="cartTotal"
-                  >Item Subtotal(<span id="numItems"></span>)</label
-                >
-                <p name="cartTotal" id="cartTotal"></p>
+                <p>Item Subtotal(<span id="numItems"></span>)</p>
+                <p id="cartTotal"></p>
               </li>
               <li>
-                <label for="shipping">Shipping Estimate</label>
+                <p>Shipping Estimate</p>
                 <p id="shipping"></p>
               </li>
               <li>
-                <label for="tax">Tax</label>
+                <p>Tax</p>
                 <p id="tax"></p>
               </li>
               <li>
-                <label for="orderTotal"><b>Order Total</b></label>
+                <p><b>Order Total</b></p>
                 <p id="orderTotal"></p>
               </li>
             </ul>
