@@ -220,9 +220,10 @@ button {
 .product-detail img {
   width: 100%;
 }
-
+/* NS remove features */
 .remove {
   cursor: pointer;
+  /* border: 1px solid red; */
 }
 
 #removeAll,
@@ -237,6 +238,32 @@ button {
 #removeAll {
   cursor: pointer;
   color: rgb(199, 6, 6);
+}
+
+/* NS Increase & Decrease Buttons */
+
+.decreaseQty,
+.increaseQty,
+.currentQty {
+  cursor: pointer;
+  display: inline-block;
+  line-height: 25px;
+  font-size: var(--font-body);
+  font-weight: 600;
+  font-size: 1.5em;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+}
+
+.decreaseQty {
+  text-align: left;
+  border-right: 1px solid var(--dark-grey);
+}
+
+.increaseQty {
+  text-align: right;
+  border-left: 1px solid var(--dark-grey);
 }
 
 /* NS Start of styles for Checkout */
@@ -276,7 +303,7 @@ button {
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% auto 15%;
+  grid-template-columns: 25% auto 90px;
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
@@ -303,11 +330,16 @@ button {
 .cart-card__quantity {
   grid-row: 1;
   grid-column: 3;
+  text-align: center;
+  border: 1px solid var(--dark-grey);
+  border-radius: 25px;
 }
 
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+  text-align: right;
+  /* border: 1px solid green; */
 }
 
 @media screen and (min-width: 500px) {
@@ -320,7 +352,7 @@ button {
   }
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    grid-template-columns: 150px auto 20%;
   }
 }
 

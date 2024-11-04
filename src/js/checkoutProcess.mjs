@@ -19,7 +19,7 @@ function packageItems(items) {
       id: item.Id,
       price: item.FinalPrice,
       name: item.Name,
-      quantity: 1,
+      quantity: item.Quantity,
     };
   });
   return simplifiedItems;
@@ -41,12 +41,8 @@ const checkoutProcess = {
   },
   calculateItemSummary: function () {
     // console.log("calculateItemSummary called");
-    const summaryElement = document.querySelector(
-      this.outputSelector + " #cartTotal"
-    );
-    const itemNumElement = document.querySelector(
-      this.outputSelector + " #numItems"
-    );
+    const summaryElement = document.querySelector(this.outputSelector + " #cartTotal");
+    const itemNumElement = document.querySelector(this.outputSelector + " #numItems");
     itemNumElement.innerText = this.list.length;
     // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
@@ -72,9 +68,7 @@ const checkoutProcess = {
     // console.log("displayOrderTotals called");
     const shipping = document.querySelector(this.outputSelector + " #shipping");
     const tax = document.querySelector(this.outputSelector + " #tax");
-    const orderTotal = document.querySelector(
-      this.outputSelector + " #orderTotal"
-    );
+    const orderTotal = document.querySelector(this.outputSelector + " #orderTotal");
     let formatUSD = new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
