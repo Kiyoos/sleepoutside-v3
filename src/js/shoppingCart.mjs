@@ -1,6 +1,6 @@
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 import { removeEvents } from "./remove.mjs";
-import { cartTotal } from "./cartCalculations.mjs";
+import { cartTotal, qtyEvents } from "./cartCalculations.mjs";
 
 export default function shoppingCart() {
   let cartItems = getLocalStorage("so-cart");
@@ -16,6 +16,8 @@ export default function shoppingCart() {
   addRemoveAll();
   cartTotal(cartItems);
   removeEvents();
+  qtyEvents();
+  checkoutButton();
 }
 
 function addRemoveAll() {
@@ -38,9 +40,9 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">
-    <span class="decreaseQty">&minus;</span>
-    <span class="currentQty">${item.Quantity}</span>
-    <span class="increaseQty">&plus;</span>
+    <span class="decreaseQty" data-id="${item.Id}">&minus;</span>
+    <span class="currentQty" >${item.Quantity}</span>
+    <span class="increaseQty" data-id="${item.Id}">&plus;</span>
   </p>
   <p class="cart-card__price">$${item.FinalPrice} each
   <span class="remove" data-id="${item.Id}">&#10060;</span>
@@ -48,4 +50,10 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+function checkoutButton() {
+  const cartEl = document.getElementById("cart-total");
+  const checkoutButtonEl = `<button id="checkout" onclick="location.href='/checkout/index.html'">Checkout</button>`;
+  return cartEl.insertAdjacentHTML("afterend", checkoutButtonEl);
 }
