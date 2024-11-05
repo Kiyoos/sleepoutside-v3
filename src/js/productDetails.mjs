@@ -62,8 +62,7 @@ function renderProductDetails() {
   document.querySelector("#productImage").alt = product.Name;
   document.querySelector("#finalPrice").innerText = product.FinalPrice;
   document.querySelector("#colorName").innerText = product.Colors[0].ColorName;
-  document.querySelector("#descriptionSimple").innerHTML =
-    product.DescriptionHtmlSimple;
+  document.querySelector("#descriptionSimple").innerHTML = product.DescriptionHtmlSimple;
   document.querySelector("#addToCart").dataset.id = product.Id;
 }
 

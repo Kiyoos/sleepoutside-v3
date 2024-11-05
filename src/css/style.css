@@ -303,7 +303,7 @@ button {
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% auto 90px;
+  grid-template-columns: 25% auto 100px;
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
