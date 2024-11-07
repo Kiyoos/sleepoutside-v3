@@ -1,6 +1,6 @@
 import { cartQty } from "./cartQuantity.mjs";
 import { findProductById } from "./externalServices.mjs";
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
 
 let product = {};
 let products = [];
@@ -18,7 +18,10 @@ export default async function productDetails(productId) {
   // once we have the product details we can render out the HTML
   renderProductDetails();
   // add a listener to Add to Cart button
-  document.getElementById("addToCart").addEventListener("click", addToCart);
+  document.getElementById("addToCart").addEventListener("click", function(){
+    addToCart();
+    alertMessage(`${product.NameWithoutBrand} added to cart!`);
+  }, false);
 }
 
 async function addToCart() {

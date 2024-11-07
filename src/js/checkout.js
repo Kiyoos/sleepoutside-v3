@@ -1,5 +1,5 @@
 import checkoutProcess from "./checkoutProcess.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, setLocalStorage } from "./utils.mjs";
 
 loadHeaderFooter();
 checkoutProcess.init("so-cart", ".checkoutSummary");
@@ -10,8 +10,15 @@ document
 
 document.forms["checkout"].addEventListener("submit", (e) => {
   e.preventDefault();
-  //e.target would contain our form in this case
-  checkoutProcess.checkout(e.target);
+  var myForm = document.forms[0];
+  var chk_status = myForm.checkValidity();
+  myForm.reportValidity();
+  if (chk_status){
+    checkoutProcess.checkout(e.target);
+    window.location.href = "/checkout/success.html";
+    const clearCart = [];
+    setLocalStorage("so-cart", clearCart);
+  } 
 });
 
 // listening for click on the button
