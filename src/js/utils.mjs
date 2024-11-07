@@ -1,4 +1,5 @@
 import { cartQty } from "./cartQuantity.mjs";
+import checkoutProcess from "./checkoutProcess.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -89,27 +90,62 @@ export async function loadHeaderFooter() {
   setTimeout(cartQty, 200);
 }
 
-export function alertMessage(message, scroll = true, duration=3000) {
+export function alertMessage(message, scroll = true, duration = 3000) {
   const alert = document.createElement("div");
   alert.classList.add("alert");
   alert.innerHTML = `<p>${message}</p><span>X</span>`;
-  alert.addEventListener("click", function(e){
-    if (e.target.tagName === "SPAN"){
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName === "SPAN") {
       main.removeChild(alert);
     }
   });
   const main = document.querySelector("main");
   main.prepend(alert);
   if (scroll) {
-    window.scrollTo(0,0);
-  };
+    window.scrollTo(0, 0);
+  }
   setTimeout(() => {
     main.removeChild(alert);
   }, duration);
 }
-export function removeAllAlerts(){
+export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => {
     document.querySelector("main").removeChild(alert);
   });
+}
+
+// NS moved event listensers for the checkout process to here
+// code needed to be an enclosed function, to stop errors on success page
+export function loadCheckoutEventListeners() {
+  // NS added this if function, so the event listeners would only run on the checkout page
+  if (window.location.pathname.includes("success")) {
+    return;
+  }
+
+  // Total does not show unless the zip code has been clicked or tabbed through
+  document
+    .querySelector("#zip")
+    .addEventListener("blur", checkoutProcess.calculateOrderTotal.bind(checkoutProcess));
+
+  // Submits the information in the form, validates, and clears cart
+  document.forms["checkout"].addEventListener("submit", (e) => {
+    e.preventDefault();
+    var myForm = document.forms[0];
+    var chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if (chk_status) {
+      checkoutProcess.checkout(e.target);
+      window.location.href = "/checkout/success.html";
+      const clearCart = [];
+      setLocalStorage("so-cart", clearCart);
+    }
+  });
+
+  // listening for click on the button
+  //document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
+  //  e.preventDefault();
+
+  //checkoutProcess.checkout(document.forms['checkout']);
+  //});
 }

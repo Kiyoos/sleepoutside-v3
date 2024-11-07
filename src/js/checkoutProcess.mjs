@@ -1,8 +1,4 @@
-import { getLocalStorage,
-  setLocalStorage,
-  alertMessage,
-  removeAllAlerts
- } from "./utils.mjs";
+import { getLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
 function formDataToJSON(formElement) {
@@ -44,18 +40,20 @@ const checkoutProcess = {
     this.calculateItemSummary();
   },
   calculateItemSummary: function () {
-    // console.log("calculateItemSummary called");
-    const summaryElement = document.querySelector(this.outputSelector + " #cartTotal");
-    const itemNumElement = document.querySelector(this.outputSelector + " #numItems");
-    itemNumElement.innerText = this.list.length;
-    // calculate the total of all the items in the cart
-    const amounts = this.list.map((item) => item.FinalPrice);
-    this.itemTotal = amounts.reduce((sum, item) => sum + item);
-    let formatUSD = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-    summaryElement.innerText = formatUSD.format(this.itemTotal);
+    if (this.list.length > 0) {
+      // console.log("calculateItemSummary called");
+      const summaryElement = document.querySelector(this.outputSelector + " #cartTotal");
+      const itemNumElement = document.querySelector(this.outputSelector + " #numItems");
+      itemNumElement.innerText = this.list.length;
+      // calculate the total of all the items in the cart
+      const amounts = this.list.map((item) => item.FinalPrice);
+      this.itemTotal = amounts.reduce((sum, item) => sum + item);
+      let formatUSD = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+      summaryElement.innerText = formatUSD.format(this.itemTotal);
+    }
   },
   calculateOrderTotal: function () {
     // console.log("calculateOrderTotal called");
