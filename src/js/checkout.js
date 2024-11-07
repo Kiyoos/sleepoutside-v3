@@ -13,12 +13,12 @@ document.forms["checkout"].addEventListener("submit", (e) => {
   var myForm = document.forms[0];
   var chk_status = myForm.checkValidity();
   myForm.reportValidity();
-  if (chk_status){
+  if (chk_status) {
     checkoutProcess.checkout(e.target);
     window.location.href = "/checkout/success.html";
     const clearCart = [];
     setLocalStorage("so-cart", clearCart);
-  } 
+  }
 });
 
 // listening for click on the button
