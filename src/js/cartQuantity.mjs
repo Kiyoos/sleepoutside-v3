@@ -21,5 +21,7 @@ export async function cartQty() {
     spanEl.setAttribute("id", "cartQty");
     spanEl.innerText = cartItemTotal;
     cartQtyEl.appendChild(spanEl);
+    let bagIcon= document.getElementById("bagIcon");
+    bagIcon.classList.add("bagIconActive");
   }
 }
