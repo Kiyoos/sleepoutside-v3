@@ -18,10 +18,14 @@ export default async function productDetails(productId) {
   // once we have the product details we can render out the HTML
   renderProductDetails();
   // add a listener to Add to Cart button
-  document.getElementById("addToCart").addEventListener("click", function(){
-    addToCart();
-    alertMessage(`${product.NameWithoutBrand} added to cart!`);
-  }, false);
+  document.getElementById("addToCart").addEventListener(
+    "click",
+    function () {
+      addToCart();
+      alertMessage(`${product.NameWithoutBrand} added to cart!`);
+    },
+    false
+  );
 }
 
 async function addToCart() {
@@ -30,29 +34,24 @@ async function addToCart() {
 
   // NS checks if the cart is empty, if it is then it will add the product to the products array
   if (currentCart === null || currentCart.length === 0) {
-    //NS adds the Quantity element at a value of 1 each time a new item is added to a cart.
+    //NS adds the Quantity element at a value of 1
     product["Quantity"] = 1;
     products.push(product);
+    console.log(products);
     setLocalStorage("so-cart", products);
     cartQty();
     return;
   }
 
-  // NS finds the index number of the existing item in cart
+  // NS finds the index number of the existing item in cart and increases the quantity
   const itemIndex = currentCart.findIndex((item) => item.Id === product.Id);
-
   if (itemIndex >= 0) {
-    // console.log(`The cart already has product id: ${product.Id}`);
     currentCart[itemIndex].Quantity++;
-    console.log(currentCart);
-    setLocalStorage("so-cart", currentCart);
-    cartQty();
-    return;
+  } else {
+    // NS adds the Quantity value of 1 to new items added to the cart
+    product["Quantity"] = 1;
+    currentCart.push(product);
   }
-
-  // NS adds additional content to the existing cart or "current cart"
-  product["Quantity"] = 1;
-  currentCart.push(product);
   console.log(currentCart);
   setLocalStorage("so-cart", currentCart);
   cartQty();
