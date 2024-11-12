@@ -44,9 +44,10 @@ function cartItemTemplate(item) {
     <span class="currentQty" >${item.Quantity}</span>
     <span class="increaseQty" data-id="${item.Id}">&plus;</span>
   </p>
-  <p class="cart-card__price">$${item.FinalPrice} each
-  <span class="remove" data-id="${item.Id}">&#10060;</span>
-</p>
+  <p class="cart-card__price">
+    $${item.FinalPrice} each
+    <span class="remove" data-id="${item.Id}">&#10060;</span>
+  </p>
 </li>`;
 
   return newItem;
