@@ -6,29 +6,31 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Sleep Outside | Cart</title>
+    <title>Sleep Outside | Orders</title>
 
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" type="image/svg" href="../images/noun_Tent_2517.svg" />
     <!--NS added favicon-->
 
-    <script src="../js/cart.mjs" type="module"></script>
+    <script src="../js/orders.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider" id="main-header"></header>
-
     <main class="divider">
-      <section class="products">
-        <h2>My Cart</h2>
-        <p id="removeAll"></p>
-
-        <ul class="product-list"></ul>
-
-        <p id="cart-total"></p>
-      </section>
+      <h2>Current Orders</h2>
+      <table id="orders">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>#Items</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody class="order-body"></tbody>
+      </table>
     </main>
-
     <footer id="main-footer"></footer>
   </body>
 </html>
