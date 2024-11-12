@@ -139,6 +139,8 @@ export function loadCheckoutEventListeners() {
       window.location.href = "/checkout/success.html";
       const clearCart = [];
       setLocalStorage("so-cart", clearCart);
+      let bagIcon= document.querySelectorAll(".bagIcon");
+      bagIcon.removeClass("bagIconActive");
     }
   });
 
