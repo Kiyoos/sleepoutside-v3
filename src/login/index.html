@@ -20,7 +20,7 @@
 
     <main class="divider">
       <section class="login">
-        <form id="loginForm">
+        <!-- <form id="loginForm">
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required />
 
@@ -28,7 +28,24 @@
           <input type="password" id="password" name="password" required />
 
           <button id="loginButton" type="submit">Login</button>
-        </form>
+        </form> -->
+        <fieldset class="login-form">
+          <legend>Login</legend>
+          <p>
+            <label for="email">Email</label>
+            <input
+              type="text"
+              placeholder="email"
+              id="email"
+              value="user1@email.com"
+            />
+          </p>
+          <p>
+            <label for="password">Password</label>
+            <input type="password" placeholder="password" id="password" />
+          </p>
+          <button type="submit" id="loginButton">Login</button>
+        </fieldset>
       </section>
     </main>
 

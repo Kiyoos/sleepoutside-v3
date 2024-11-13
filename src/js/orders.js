@@ -6,3 +6,7 @@ loadHeaderFooter();
 
 const token = checkLogin();
 currentOrders("#orders", token);
+
+// document.querySelector("#logout").addEventListener("click", () => {
+//   // NS need function to logout
+// });
