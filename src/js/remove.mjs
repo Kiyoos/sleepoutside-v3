@@ -1,7 +1,7 @@
 // This page done by Nina Saunders
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
-export function removeItem(itemId) {
+export function removeProduct(itemId) {
   // NS grabs current cart contents
   let currentCart = getLocalStorage("so-cart");
 
@@ -32,7 +32,7 @@ export function removeEvents() {
     item.addEventListener("click", (event) => {
       const clickedItem = event.target;
       const attributeValue = clickedItem.getAttribute("data-id");
-      return removeItem(attributeValue);
+      return removeProduct(attributeValue);
     });
   });
 
