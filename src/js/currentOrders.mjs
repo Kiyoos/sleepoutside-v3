@@ -16,6 +16,7 @@ export default async function currentOrders(selector, token) {
 function orderTemplate(order) {
   return `<tr>
       <td>${order.id}</td>
+      <td>${order.fname} ${order.lname}</td>
       <td>${new Date(order.orderDate).toLocaleDateString("en-US")}</td>
       <td>${order.items.length}</td>
       <td>${order.orderTotal}</td>
