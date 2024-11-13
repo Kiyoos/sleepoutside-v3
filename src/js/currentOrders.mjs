@@ -17,6 +17,7 @@ function orderTemplate(order) {
   return `<tr>
       <td>${order.id}</td>
       <td>${new Date(order.orderDate).toLocaleDateString("en-US")}</td>
+      <td>${order.items.length}</td>
       <td>${order.orderTotal}</td>
     </tr>`;
 }
