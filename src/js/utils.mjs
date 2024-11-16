@@ -139,9 +139,14 @@ export function loadCheckoutEventListeners() {
       window.location.href = "/checkout/success.html";
       const clearCart = [];
       setLocalStorage("so-cart", clearCart);
-      let bagIcon= document.querySelectorAll(".bagIcon");
+      let bagIcon = document.querySelectorAll(".bagIcon");
       bagIcon.removeClass("bagIconActive");
     }
+  });
+
+  //NS added customer registration
+  document.getElementById("register").addEventListener("click", () => {
+    window.location.href = "/users/index.html";
   });
 
   // listening for click on the button

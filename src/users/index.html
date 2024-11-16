@@ -21,7 +21,7 @@
     <main class="divider">
       <h2>User Registration</h2>
       <section class="userRegistration">
-        <form name="userForm">
+        <form name="register">
           <fieldset>
             <div class="userName">
               <label for="fname">First Name</label><br />
@@ -44,9 +44,15 @@
 
             <div class="userLogin">
               <label for="email">Email</label><br />
-              <input type="text" id="email" value="user@email.com" /><br />
+              <input type="text" name="email" id="email" value="user@email.com" required /><br />
               <label for="password">Password</label><br />
-              <input type="password" placeholder="password" id="password" /><br />
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                id="password"
+                required
+              /><br />
             </div>
 
             <button type="submit" id="userRegister">Register</button>
