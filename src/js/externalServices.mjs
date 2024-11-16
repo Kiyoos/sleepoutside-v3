@@ -56,3 +56,15 @@ export async function getOrders(token) {
   const response = await fetch(baseURL + "orders", options).then(convertToJson);
   return response;
 }
+
+export async function registerUser(user) {
+  // console.log(user);
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  };
+  return await fetch(baseURL + "users", options).then(convertToJson);
+}
