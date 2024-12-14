@@ -3,27 +3,35 @@ import { removeEvents } from "./remove.mjs";
 import { cartTotal, qtyEvents } from "./cartCalculations.mjs";
 
 export default function shoppingCart() {
-  let cartItems = getLocalStorage("so-cart");
-  const outputEl = document.querySelector(".product-list");
+  try {
+    let cartItems = getLocalStorage("so-cart");
+    const outputEl = document.querySelector(".product-list");
 
-  // NS gives a message if the cart is empty;
-  if (cartItems == null || cartItems.length == 0) {
-    outputEl.innerHTML = `<p>Cart is empty. Please add product to see it here.</p>`;
-    return;
+    // NS gives a message if the cart is empty;
+    if (cartItems == null || cartItems.length == 0) {
+      outputEl.innerHTML = `<p>Cart is empty. Please add product to see it here.</p>`;
+      return;
+    }
+
+    renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+    addRemoveAll();
+    cartTotal(cartItems);
+    removeEvents();
+    qtyEvents();
+    checkoutButton();
+  } catch (error) {
+    console.log(error);
   }
-
-  renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
-  addRemoveAll();
-  cartTotal(cartItems);
-  removeEvents();
-  qtyEvents();
-  checkoutButton();
 }
 
 function addRemoveAll() {
-  const sectionEl = document.getElementById("removeAll");
-  sectionEl.innerText = "Remove All";
-  return;
+  try {
+    const sectionEl = document.getElementById("removeAll");
+    sectionEl.innerText = "Remove All";
+    return;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function cartItemTemplate(item) {

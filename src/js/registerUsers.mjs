@@ -12,16 +12,20 @@ export function registerEvents() {
 }
 
 export function registeredEvents() {
-  if (!window.location.pathname.includes("registered")) {
-    return;
-  }
-  document.getElementById("checkout").addEventListener("click", () => {
-    window.location.href = "/checkout/index.html";
-  });
+  try {
+    if (!window.location.pathname.includes("registered")) {
+      return;
+    }
+    document.getElementById("checkout").addEventListener("click", () => {
+      window.location.href = "/checkout/index.html";
+    });
 
-  document.getElementById("continue").addEventListener("click", () => {
-    window.location.href = "/";
-  });
+    document.getElementById("continue").addEventListener("click", () => {
+      window.location.href = "/";
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function formDataToJSON(formElement) {

@@ -29,10 +29,14 @@ export function setClick(selector, callback) {
 
 // gets needed parameter from URL
 export function getParam(param) {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get(param);
-  return product;
+  try {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const product = urlParams.get(param);
+    return product;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function renderListWithTemplate(
@@ -91,68 +95,74 @@ export async function loadHeaderFooter() {
 }
 
 export function alertMessage(message, scroll = true, duration = 3000) {
-  const alert = document.createElement("div");
-  alert.classList.add("alert");
-  alert.innerHTML = `<p>${message}</p><span>X</span>`;
-  alert.addEventListener("click", function (e) {
-    if (e.target.tagName === "SPAN") {
-      main.removeChild(alert);
+  try {
+    const alert = document.createElement("div");
+    alert.classList.add("alert");
+    alert.innerHTML = `<p>${message}</p><span>X</span>`;
+    alert.addEventListener("click", function (e) {
+      if (e.target.tagName === "SPAN") {
+        main.removeChild(alert);
+      }
+    });
+    const main = document.querySelector("main");
+    main.prepend(alert);
+    if (scroll) {
+      window.scrollTo(0, 0);
     }
-  });
-  const main = document.querySelector("main");
-  main.prepend(alert);
-  if (scroll) {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      main.removeChild(alert);
+    }, duration);
+  } catch (error) {
+    console.log(error);
   }
-  setTimeout(() => {
-    main.removeChild(alert);
-  }, duration);
 }
+
 export function removeAllAlerts() {
-  const alerts = document.querySelectorAll(".alert");
-  alerts.forEach((alert) => {
-    document.querySelector("main").removeChild(alert);
-  });
+  try {
+    const alerts = document.querySelectorAll(".alert");
+    alerts.forEach((alert) => {
+      document.querySelector("main").removeChild(alert);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // NS moved event listensers for the checkout process to here
 // code needed to be an enclosed function, to stop errors on success page
 export function loadCheckoutEventListeners() {
   // NS added this if function, so the event listeners would only run on the checkout page
-  if (window.location.pathname.includes("success")) {
-    return;
-  }
-
-  // Total does not show unless the zip code has been clicked or tabbed through
-  document
-    .querySelector("#zip")
-    .addEventListener("blur", checkoutProcess.calculateOrderTotal.bind(checkoutProcess));
-
-  // Submits the information in the form, validates, and clears cart
-  document.forms["checkout"].addEventListener("submit", (e) => {
-    e.preventDefault();
-    var myForm = document.forms[0];
-    var chk_status = myForm.checkValidity();
-    myForm.reportValidity();
-    if (chk_status) {
-      checkoutProcess.checkout(e.target);
-      window.location.href = "/checkout/success.html";
-      const clearCart = [];
-      setLocalStorage("so-cart", clearCart);
-      let bagIcon = document.querySelectorAll(".bagIcon");
-      bagIcon.removeClass("bagIconActive");
+  try {
+    if (window.location.pathname.includes("success")) {
+      return;
     }
-  });
 
-  //NS added customer registration
-  document.getElementById("register").addEventListener("click", () => {
-    window.location.href = "/users/index.html";
-  });
+    // Total does not show unless the zip code has been clicked or tabbed through
+    document
+      .querySelector("#zip")
+      .addEventListener("blur", checkoutProcess.calculateOrderTotal.bind(checkoutProcess));
 
-  // listening for click on the button
-  //document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
-  //  e.preventDefault();
+    // Submits the information in the form, validates, and clears cart
+    document.forms["checkout"].addEventListener("submit", (e) => {
+      e.preventDefault();
+      var myForm = document.forms[0];
+      var chk_status = myForm.checkValidity();
+      myForm.reportValidity();
+      if (chk_status) {
+        checkoutProcess.checkout(e.target);
+        window.location.href = "/checkout/success.html";
+        const clearCart = [];
+        setLocalStorage("so-cart", clearCart);
+        let bagIcon = document.querySelectorAll(".bagIcon");
+        bagIcon.removeClass("bagIconActive");
+      }
+    });
 
-  //checkoutProcess.checkout(document.forms['checkout']);
-  //});
+    //NS added customer registration
+    document.getElementById("register").addEventListener("click", () => {
+      window.location.href = "/users/index.html";
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }

@@ -29,32 +29,36 @@ export default async function productDetails(productId) {
 }
 
 async function addToCart() {
-  // NS grabs current cart contents, so current contents aren't lost when additional contents are added.
-  let currentCart = getLocalStorage("so-cart");
+  try {
+    // NS grabs current cart contents, so current contents aren't lost when additional contents are added.
+    let currentCart = getLocalStorage("so-cart");
 
-  // NS checks if the cart is empty, if it is then it will add the product to the products array
-  if (currentCart === null || currentCart.length === 0) {
-    //NS adds the Quantity element at a value of 1
-    product["Quantity"] = 1;
-    products.push(product);
-    console.log(products);
-    setLocalStorage("so-cart", products);
+    // NS checks if the cart is empty, if it is then it will add the product to the products array
+    if (currentCart === null || currentCart.length === 0) {
+      //NS adds the Quantity element at a value of 1
+      product["Quantity"] = 1;
+      products.push(product);
+      console.log(products);
+      setLocalStorage("so-cart", products);
+      cartQty();
+      return;
+    }
+
+    // NS finds the index number of the existing item in cart and increases the quantity
+    const itemIndex = currentCart.findIndex((item) => item.Id === product.Id);
+    if (itemIndex >= 0) {
+      currentCart[itemIndex].Quantity++;
+    } else {
+      // NS adds the Quantity value of 1 to new items added to the cart
+      product["Quantity"] = 1;
+      currentCart.push(product);
+    }
+    console.log(currentCart);
+    setLocalStorage("so-cart", currentCart);
     cartQty();
-    return;
+  } catch (error) {
+    console.log(error);
   }
-
-  // NS finds the index number of the existing item in cart and increases the quantity
-  const itemIndex = currentCart.findIndex((item) => item.Id === product.Id);
-  if (itemIndex >= 0) {
-    currentCart[itemIndex].Quantity++;
-  } else {
-    // NS adds the Quantity value of 1 to new items added to the cart
-    product["Quantity"] = 1;
-    currentCart.push(product);
-  }
-  console.log(currentCart);
-  setLocalStorage("so-cart", currentCart);
-  cartQty();
 }
 
 function renderProductDetails() {
